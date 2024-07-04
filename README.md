@@ -88,14 +88,12 @@ The accuracy is evaluated according to CrossEntropyLoss.
 ## Predefined Dialogues
 - Query: "What is the return policy for items purchased at your store?"
 - Expected Response: Information on the return policy.
-Line 1  
-- Query: "I want to talk to a human representative."
-  Expected Response: Request for contact details.
 
-Line 1  
+- Query: "I want to talk to a human representative."
+- Expected Response: Request for contact details.
 
 - Query: "Buy me a chocolate cookie"
-  Expected Response: "I don't understand you."
+- Expected Response: "I don't understand you."
 
 ## Performance Summary
 
