@@ -79,10 +79,10 @@ The source code for the agent, including deployment and conversation handling, c
 ### 📊 Evaluation Report
 
 ## Performance Metrics
-*Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
+> * *Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
 The accuracy is evaluated according to CrossEntropyLoss.
-*Response Relevance*: Assessed by the relevance of the responses to the input queries.
-*User Satisfaction*: Measured based on user feedback collected during interactions. 
+> * *Response Relevance*: Assessed by the relevance of the responses to the input queries.
+> * *User Satisfaction*: Measured based on user feedback collected during interactions. 
 <img width="628" alt="Screenshot 2024-07-04 at 12 15 57" src="https://github.com/morganizzzm/EcommerceAgent/assets/89296464/777a2944-c503-4d01-aa7e-d626a1895a75">
 
 
