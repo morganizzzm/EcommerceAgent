@@ -60,20 +60,21 @@ Open your browser and go to http://127.0.0.1:5000
 
 ### 💻 Source Code
 
-The source code for the agent, including deployment and conversation handling, can be found in the repository. Key files include:
+The source code for the agent, including deployment and conversation handling, can be found in the repository. 
+> Key files include:
 
-app.py: The main Flask application.
-model/data.py: Contains the training data.
-model/model.h5: The trained model.
-model/tokenizer.pickle: The tokenizer used for text preprocessing.
-template/index.html: The frontend code for the bot.
+> * app.py: The main Flask application.
+> * model/data.py: Contains the training data.
+> * model/model.h5: The trained model.
+> * model/tokenizer.pickle: The tokenizer used for text preprocessing.
+> * template/index.html: The frontend code for the bot.
 
 ### 📄 Documentation
 
-Running and Testing the Agent
-Run the Flask Server: Start the server using the command above.
-Interact via Browser: Open the provided URL to interact with the chatbot.
-Test Predefined Dialogues: Use a predefined set of queries to test the chatbot's responses.
+> Running and Testing the Agent
+> * Run the Flask Server: Start the server using the command above.
+> * Interact via Browser: Open the provided URL to interact with the chatbot.
+> * Test Predefined Dialogues: Use a predefined set of queries to test the chatbot's responses.
 
 ### 📊 Evaluation Report
 
