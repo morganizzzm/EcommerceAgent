@@ -3,8 +3,8 @@
 A smart, AI-powered chatbot to assist customers with order status updates, connecting to human representatives, and answering questions about return and refund policies.
 
 ## 📋 Table of Contents
-- [Features](#features)
-- [Installation](#installation)
+- [Features](##Features)
+- [Installation](##installation)
 - [Usage](#usage)
 - [Source Code](#source-code)
 - [Documentation](#documentation)
@@ -30,3 +30,10 @@ Follow these steps to set up and run the chatbot locally.
 ```bash
 git clone https://github.com/morganizzzm/EcommerceAgent.git
 cd EcommerceAgent
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+
+#usage 
+
