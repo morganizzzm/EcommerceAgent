@@ -79,7 +79,7 @@ The source code for the agent, including deployment and conversation handling, c
 ### 📊 Evaluation Report
 
 ## Performance Metrics
-> * *Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. \ The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
+> * *Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
 The accuracy is evaluated according to CrossEntropyLoss.
 > * *Response Relevance*: Assessed by the relevance of the responses to the input queries.
 > * *User Satisfaction*: Measured based on user feedback collected during interactions. 
@@ -87,17 +87,17 @@ The accuracy is evaluated according to CrossEntropyLoss.
 
 
 ## Predefined Dialogues
-Query: "What is the return policy for items purchased at your store?"
-Expected Response: Information on the return policy.
-Query: "I want to talk to a human representative."
-Expected Response: Request for contact details.
-Query: "Buy me a chocolate cookie"
-Expected Response: "I don't understand you."
+- Query: "What is the return policy for items purchased at your store?"
+  Expected Response: Information on the return policy.
+- Query: "I want to talk to a human representative."
+  Expected Response: Request for contact details.
+- Query: "Buy me a chocolate cookie"
+  Expected Response: "I don't understand you."
 
 ## Performance Summary
 
 Accuracy | Response Relevance | User Satisfaction
- ------------ | ------------- 
+ ------- | ------------- | ------------- 
 97.8% | High | 90%
 
 
