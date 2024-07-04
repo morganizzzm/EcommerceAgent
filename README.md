@@ -1,7 +1,5 @@
 # 🤖 Ecommerce Agent
 
-![Chatbot Image](https://miro.medium.com/max/1200/1*8b9pD-W4w8MZZC_VqfXKCA.png)
-
 A smart, AI-powered chatbot to assist customers with order status updates, connecting to human representatives, and answering questions about return and refund policies.
 
 ## 📋 Table of Contents
