@@ -62,7 +62,6 @@ Open your browser and go to http://127.0.0.1:5000
 
 The source code for the agent, including deployment and conversation handling, can be found in the repository. 
 > Key files include:
-
 > * app.py: The main Flask application.
 > * model/data.py: Contains the training data.
 > * model/model.h5: The trained model.
@@ -88,9 +87,13 @@ The accuracy is evaluated according to CrossEntropyLoss.
 
 ## Predefined Dialogues
 - Query: "What is the return policy for items purchased at your store?"
-  Expected Response: Information on the return policy.
+- Expected Response: Information on the return policy.
+Line 1  
 - Query: "I want to talk to a human representative."
   Expected Response: Request for contact details.
+
+Line 1  
+
 - Query: "Buy me a chocolate cookie"
   Expected Response: "I don't understand you."
 
