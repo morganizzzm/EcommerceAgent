@@ -79,7 +79,7 @@ The source code for the agent, including deployment and conversation handling, c
 ### 📊 Evaluation Report
 
 ## Performance Metrics
-> * *Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
+> * *Accuracy*: Evaluated by comparing the chatbot's responses to predefined dialogues. \ The data for the dialogues is generated with the help of ChatGPT and can be found in model/data.py.
 The accuracy is evaluated according to CrossEntropyLoss.
 > * *Response Relevance*: Assessed by the relevance of the responses to the input queries.
 > * *User Satisfaction*: Measured based on user feedback collected during interactions. 
