@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .chat-container {
+            width: 500px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .chat-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chat-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .chat-input {
+            display: flex;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background: #0056b3;
+        }
+        .feedback-button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .feedback-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-title">Customer Support for Some E-Commerce Website</div>
+        <div class="chat-box" id="chat-box">
+            <div id="initial-message" style="padding: 10px; margin: 10px 0; background: #e1bee7; border-radius: 5px;">
+                Bot: Hi, I'm the virtual assistant for Some E-Commerce Website. I can help you with order status updates, connecting you to a human representative, and answering questions about our return and refund policies. How can I assist you today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message here..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let userId = generateUserId();
+
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const chatBox = document.getElementById('chat-box');
+
+            if (userInput.trim() === '') return;
+
+            addMessageToChatBox('You', userInput, '#e0f7fa');
+
+            document.getElementById('user-input').value = '';
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userInput, user_id: userId }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    addMessageToChatBox('Bot', data.reply, '#e1bee7');
+                    if (data.feedback_request) {
+                        askForFeedback();
+                    }
+                } else {
+                    throw new Error(data.reply);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessageToChatBox('Bot', 'There was an error processing your request.', '#ffccbc');
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function askForFeedback() {
+            const chatBox = document.getElementById('chat-box');
+            const feedbackPrompt = document.createElement('div');
+            feedbackPrompt.textContent = 'Was this information helpful?';
+            feedbackPrompt.style.padding = '10px';
+            feedbackPrompt.style.margin = '10px 0';
+            feedbackPrompt.style.background = '#ffecb3';
+            feedbackPrompt.style.borderRadius = '5px';
+            feedbackPrompt.style.fontStyle = 'italic';
+            feedbackPrompt.id = 'feedback-prompt';
+            chatBox.appendChild(feedbackPrompt);
+
+            const feedbackYesButton = document.createElement('button');
+            feedbackYesButton.textContent = 'Yes';
+            feedbackYesButton.className = 'feedback-button';
+            feedbackYesButton.onclick = () => sendFeedback('yes');
+            chatBox.appendChild(feedbackYesButton);
+
+            const feedbackNoButton = document.createElement('button');
+            feedbackNoButton.textContent = 'No';
+            feedbackNoButton.className = 'feedback-button';
+            feedbackNoButton.onclick = () => sendFeedback('no');
+            chatBox.appendChild(feedbackNoButton);
+        }
+
+        async function sendFeedback(feedback) {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ feedback, user_id: userId }),
+                });
+
+                const data = await response.json();
+                addMessageToChatBox('Bot', data.reply, '#e1bee7');
+
+                document.getElementById('feedback-prompt').remove();
+                document.querySelectorAll('.feedback-button').forEach(button => button.remove());
+
+            } catch (error) {
+                console.error('Error:', error);
+                addMessageToChatBox('Bot', 'There was an error processing your feedback.', '#ffccbc');
+            }
+        }
+
+        function addMessageToChatBox(sender, message, backgroundColor) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = `${sender}: ${message}`;
+            messageDiv.style.padding = '10px';
+            messageDiv.style.margin = '10px 0';
+            messageDiv.style.background = backgroundColor;
+            messageDiv.style.borderRadius = '5px';
+            chatBox.appendChild(messageDiv);
+        }
+
+        function generateUserId() {
+            return 'user-' + Math.random().toString(36).substr(2, 9);
+        }
+    </script>
+</body>
+</html>
