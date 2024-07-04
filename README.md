@@ -3,8 +3,8 @@
 A smart, AI-powered chatbot to assist customers with order status updates, connecting to human representatives, and answering questions about return and refund policies.
 
 ## 📋 Table of Contents
-- [Features](##Features)
-- [Installation](##installation)
+- [Features](#features)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Source Code](#source-code)
 - [Documentation](#documentation)
