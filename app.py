@@ -26,6 +26,22 @@ orders = {
     "125": "Your order has been delivered."
 }
 
+
+def save_response_feedback_df(file_path='response_feedback.csv'):
+    global response_feedback_df
+    response_feedback_df.to_csv(file_path, index=False)
+
+
+def load_response_feedback_df(file_path='response_feedback.csv'):
+    global response_feedback_df
+    try:
+        response_feedback_df = pd.read_csv(file_path)
+    except FileNotFoundError:
+        response_feedback_df = pd.DataFrame(columns=['user_id', 'bot_response', 'feedback'])
+
+
+load_response_feedback_df()
+
 # Return policies information
 return_policies = {
     "general_return_policies": "You can return most items within 30 days of purchase for a full refund or exchange. Items must be in their original condition, with all tags and packaging intact. Please bring your receipt or proof of purchase when returning items.",
@@ -168,15 +184,49 @@ def feedback():
     user_id = request.json.get("user_id")
     feedback = request.json.get("feedback")
 
-    if feedback and feedback.lower() in ['yes', 'no']:
-        with open('user_feedback.txt', 'a') as f:
-            last_response = user_states[user_id].get("last_response", "No previous response")
-            f.write(f"User ID: {user_id}\nLast Response: {last_response}\nFeedback: {feedback}\n\n")
-            user_states.pop(user_id, None)
+    if feedback and feedback.lower() in ['yes','no']:
+        last_response = user_states[user_id].get(
+            "last_response","No previous response"
+            )
+        store_response_feedback(user_id,last_response,feedback)
+        user_states.pop(user_id,None)
         return jsonify({"reply": "Thank you for your feedback!"})
     else:
         return jsonify({"reply": "Please respond with 'yes' or 'no'."})
 
 
+def store_response_feedback(user_id, bot_response, feedback=None, file_path='response_feedback.csv'):
+    global response_feedback_df
+    new_row = pd.DataFrame([{
+        'user_id': user_id,
+        'bot_response': bot_response,
+        'feedback': feedback
+    }])
+    response_feedback_df = pd.concat([response_feedback_df, new_row], ignore_index=True)
+    save_response_feedback_df(file_path)
+
+def evaluate_feedback():
+    load_response_feedback_df()
+    positive_feedback = response_feedback_df['feedback'].str.lower().value_counts().get('yes', 0)
+    negative_feedback = response_feedback_df['feedback'].str.lower().value_counts().get('no', 0)
+    total_feedback = positive_feedback + negative_feedback
+    if total_feedback > 0:
+        satisfaction_rate = (positive_feedback / total_feedback) * 100
+    else:
+        satisfaction_rate = 0
+    return {
+        'total_feedback': total_feedback,
+        'positive_feedback': positive_feedback,
+        'negative_feedback': negative_feedback,
+        'satisfaction_rate': satisfaction_rate
+    }
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+    # to read feedback uncomment this line
+    # print(evaluate_feedback())
+
