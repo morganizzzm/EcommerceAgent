@@ -78,7 +78,7 @@ The source code for the agent, including deployment and conversation handling, c
 > * *Response Relevance*: Assessed by the relevance of the responses to the input queries.
 - Measure by the list of expected outputs. 
 > * *User Satisfaction*: Measured based on user feedback collected during interactions.
-- After the dialog is over, the user is asked to provide feedback: whether they were satisfied or not by the service. The answer is stored in the txt file user_feedback.txt in the format : User_id, Query, Satisfaied: Yes/No. At each time step one can look at the user_feedback.txt and 
+- After the dialog is over, the user is asked to provide feedback: whether they were satisfied or not by the service. The answer is stored in the csv file user_feedback.csv in the format : User_id, Bot_Response, Feedback: Yes/No. At each time step one can run the function evaluate_feedback() and get the currect stats: number of satisfied users, number of unsatisfied users, and percentage of satisfaction.
 <img width="628" alt="Screenshot 2024-07-04 at 12 15 57" src="https://github.com/morganizzzm/EcommerceAgent/assets/89296464/777a2944-c503-4d01-aa7e-d626a1895a75">
 
 
@@ -125,7 +125,8 @@ The source code for the agent, including deployment and conversation handling, c
 
 Accuracy | Response Relevance | User Satisfaction
  ------- | ------------- | ------------- 
-97.8% | High | 90%
+97.8% | High | 90% (As the only one user I am pretty satisifed)
+
 
 
 
