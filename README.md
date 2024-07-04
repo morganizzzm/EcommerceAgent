@@ -30,6 +30,7 @@ Follow these steps to set up and run the chatbot locally.
 ```bash
 git clone https://github.com/morganizzzm/EcommerceAgent.git
 cd EcommerceAgent
+```bash
 
 ### Install Dependencies
 ```bash
