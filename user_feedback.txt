@@ -62,3 +62,19 @@ User ID: user-uavs6jmus
 Last Response: You can return most items within 30 days of purchase for a full refund or exchange. Items must be in their original condition, with all tags and packaging intact. Please bring your receipt or proof of purchase when returning items.
 Feedback: yes
 
+User ID: user-ha6l6d769
+Last Response: Your order is being processed.
+Feedback: yes
+
+User ID: user-y1dmfzbo1
+Last Response: Your request has been submitted. A human representative will contact you soon.
+Feedback: yes
+
+User ID: user-rc7vuln4x
+Last Response: Certain items such as clearance merchandise, perishable goods, and personal care items are non-returnable. Please check the product description or ask a store associate for more details.
+Feedback: yes
+
+User ID: user-bkhgr300q
+Last Response: Your order is being processed.
+Feedback: yes
+
